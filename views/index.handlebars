@@ -1,0 +1,62 @@
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css'>
+<div class="centeredDiv"></div>
+<div class="columns">
+
+
+  <div class="column is-offset-1"> 
+    {{#each burger}}
+    <article class="message is-small is-warning">
+      <div class="message-header"> 
+        <p> 
+          {{this.id}}    
+         {{this.burger_name}}  
+        </p>
+       
+
+      {{!-- <button class="delete is-small" aria-label="delete"></button> --}}
+      </div>
+    </article>
+     {{/each}}
+  </div>
+
+  <div class="column is-offset-">
+    {{!-- <h1>Eat Da Burger</h1> --}}
+    <img src="https://i.ibb.co/W2PMSPj/vectorburger.png" height="200px" width="200px" class="image">
+    <h2>Add a Burger</h2>
+    <form class="create-form">
+
+      <div class="form-group">
+        <label for="burgerName">Burger:</label>
+        <input type="text" id="burgerName" name="name">
+      </div>
+
+      <button type="submit">Add Burger</button>
+    </form>
+  </div>
+<div class="column">
+ Right
+</div>
+
+</div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+          $(".create-form").on("submit", function (event) {
+            // Make sure to preventDefault on a submit event.
+            event.preventDefault();
+            var newBurger = {
+              burger_name: $("#burgerName").val().trim(),
+              devoured: $("[devoured=no]:checked").val().trim()
+            };
+            $.ajax({
+              url: "/",
+              method: "POST",
+              data: burger,
+              datatype: 'text'
+            }).then(function (res) {
+
+            })
+          })
+        })
+
+    </script>
