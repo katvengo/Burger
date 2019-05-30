@@ -10,7 +10,51 @@ html{
     height: 100%;
 } 
 
+.message-header{
+width: 170px !important;
+/* padding-left: 30px; */
+}
 
+.devoured{
+    height: 50px !important;
+    width: 50px !important;
+    padding-left: 100px !important;
+    padding-right: 100px !important;
+}
+
+.smallerDivs{
+    display: flex;
+    height: 30px;
+    width: 200px;
+    margin: 10px;
+    background: rgba(173, 41, 1, 0.3);
+    /* padding-right: 20px; */
+}
+#one{
+background-color: yellow;
+width: 10%;
+border: 2px solid yellow;
+font-weight: bold;
+color: red;
+
+}
+#two{
+width: 70%;
+background-color: yellow;
+border: 2px solid yellow;
+font-weight: bold;
+color: red;
+}
+
+#three{
+    width: 20%;
+    background-color: rgba(173, 41, 1, 0.3);
+    text-align: center;
+    padding-left: 20px;
+}
+/* .devour{
+    background-color: 
+} */
 .h1Cont {
     font-size: 30px;
     color: rgb(241, 240, 234);

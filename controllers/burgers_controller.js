@@ -24,12 +24,25 @@ router.post("/", function (req, res){
             console.log(error);
             res.sendStatus(500);
         } else{
-            res.render('newburger', {
-                burger: data
+            res.render('index', {
+                newBurger: data
             });
         }
     })
 })
+
+// router.post("/", function (req, res){
+//     orm.updateOne(function(error, data){
+//         if (error){
+//             console.log(error);
+//             res.sendStatus(500);
+//         } else{
+//             res.render('newburger', {
+//                 burger: data
+//             });
+//         }
+//     })
+// })
 
 
 module.exports = router

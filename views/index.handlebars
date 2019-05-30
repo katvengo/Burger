@@ -3,24 +3,19 @@
 <div class="columns">
 
 
-  <div class="column is-offset-1"> 
+<div class="column is-offset-1"> 
     {{#each burger}}
-    <article class="message is-small is-warning">
-      <div class="message-header"> 
-        <p> 
-          {{this.id}}    
-         {{this.burger_name}}  
-        </p>
-       
-
-      {{!-- <button class="delete is-small" aria-label="delete"></button> --}}
-      </div>
-    </article>
+    <div class ="smallerDivs">
+<span id ="one"> {{this.id}}</span>
+<span id ="two"> {{this.burger_name}}</span>
+<span id ="three"><button class ="button devour is-light is-rounded ">Devour!</button></span>
+</div>
+   
      {{/each}}
   </div>
 
   <div class="column is-offset-">
-    {{!-- <h1>Eat Da Burger</h1> --}}
+  
     <img src="https://i.ibb.co/W2PMSPj/vectorburger.png" height="200px" width="200px" class="image">
     <h2>Add a Burger</h2>
     <form class="create-form">
@@ -34,9 +29,11 @@
     </form>
   </div>
 <div class="column">
- Right
+<div class ="smallerDivs">
+<span id ="one">1</span>
+<span id ="two">2</span>
+<span id ="three"><button class ="button devour is-light is-rounded ">Devour!</button></span>
 </div>
-
 </div>
 
     <script type="text/javascript">
@@ -45,8 +42,8 @@
             // Make sure to preventDefault on a submit event.
             event.preventDefault();
             var newBurger = {
-              burger_name: $("#burgerName").val().trim(),
-              devoured: $("[devoured=no]:checked").val().trim()
+              burger_name: $("#burgerName").val()
+              devoured: $("[devoured=no]:checked").val()
             };
             $.ajax({
               url: "/",
@@ -54,7 +51,15 @@
               data: burger,
               datatype: 'text'
             }).then(function (res) {
-
+              $( ".devoured" ).click(function() {
+  $( "#book" ).animate({
+    opacity: 0.25,
+    left: "+=50",
+    height: "toggle"
+  }, 5000, function() {
+    // Animation complete.
+  });
+});
             })
           })
         })
