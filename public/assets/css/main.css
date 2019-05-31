@@ -92,3 +92,5 @@ body {
     height: 60px;
     /* Height of the footer */
 }
+
+/* {{!-- devoured: $("[devoured=no]:checked").val() --}} */

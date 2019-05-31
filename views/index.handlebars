@@ -3,19 +3,19 @@
 <div class="columns">
 
 
-<div class="column is-offset-1"> 
+  <div class="column is-offset-1">
     {{#each burger}}
-    <div class ="smallerDivs">
-<span id ="one"> {{this.id}}</span>
-<span id ="two"> {{this.burger_name}}</span>
-<span id ="three"><button class ="button devour is-light is-rounded ">Devour!</button></span>
-</div>
-   
-     {{/each}}
+    <div class="smallerDivs">
+      <span id="one"> {{this.id}}</span>
+      <span id="two"> {{this.burger_name}}</span>
+      <span id="three"><button class="button devour is-light is-rounded ">Devour!</button></span>
+    </div>
+
+    {{/each}}
   </div>
 
   <div class="column is-offset-">
-  
+
     <img src="https://i.ibb.co/W2PMSPj/vectorburger.png" height="200px" width="200px" class="image">
     <h2>Add a Burger</h2>
     <form class="create-form">
@@ -25,43 +25,38 @@
         <input type="text" id="burgerName" name="name">
       </div>
 
-      <button type="submit">Add Burger</button>
+      <button type="submit" class="submit">Add Burger</button>
     </form>
   </div>
-<div class="column">
-<div class ="smallerDivs">
-<span id ="one">1</span>
-<span id ="two">2</span>
-<span id ="three"><button class ="button devour is-light is-rounded ">Devour!</button></span>
-</div>
-</div>
+  <div class="column">
+    <div class="smallerDivs">
+      <span id="one">1</span>
+      <span id="two">2</span>
+      <span id="three"><button class="button devour is-light is-rounded ">Devour!</button></span>
+    </div>
+  </div>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-          $(".create-form").on("submit", function (event) {
-            // Make sure to preventDefault on a submit event.
-            event.preventDefault();
-            var newBurger = {
-              burger_name: $("#burgerName").val()
-              devoured: $("[devoured=no]:checked").val()
-            };
-            $.ajax({
-              url: "/",
-              method: "POST",
-              data: burger,
-              datatype: 'text'
-            }).then(function (res) {
-              $( ".devoured" ).click(function() {
-  $( "#book" ).animate({
-    opacity: 0.25,
-    left: "+=50",
-    height: "toggle"
-  }, 5000, function() {
-    // Animation complete.
-  });
-});
-            })
-          })
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $(".submit").on("click", function (event) {
+        console.log('submit')
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+        var newBurger = {
+          "burger_name": $("#burgerName").val(),
+          "id": "",
+          "devoured": ""
+        };
+        $.ajax({
+          url: "/",
+          method: "POST",
+          data: newBurger,
+          datatype: 'text'
+        }).then(function (res) {
+          console.log(newBurger)
+         
         })
+      })
 
-    </script>
+    })
+  </script>

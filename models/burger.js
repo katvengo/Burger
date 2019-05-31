@@ -11,14 +11,14 @@ var burger = {
     },
     insertOne: function () {
         orm.insertOne("burgers", function (req) {
-            const newBurger = req.body;
+            var newBurger = req.body;
             [
                 newBurger.id,
                 newBurger.burger_name,
                 newburger.devoured
             ]
         });
-    
+
         //     // update: function (objColVals, condition, cb) {
         //     //     orm.update("cats", objColVals, condition, function (res) {
         //     //         cb(res);

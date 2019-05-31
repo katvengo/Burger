@@ -1,16 +1,19 @@
 var express = require("express");
 var router = express.Router();
+ var app = express()
+var bodyParser = require("body-parser");
 
-var burger = require("../models/burger.js");
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const orm = require('../config/orm.js');
 
 router.get("/", function (req, res) {
     orm.selectAll(function (error, data) {
-        if (error){
+        if (error) {
             console.log(error);
             res.sendStatus(500);
-        } else{
+        } else {
             res.render('index', {
                 burger: data
             });
@@ -18,15 +21,16 @@ router.get("/", function (req, res) {
     })
 });
 
-router.post("/", function (req, res){
-    orm.insertOne(function(error, data){
-        if (error){
+router.post("/", function (req, res) {
+    orm.insertOne(req.body, function (error, data) {
+        if (error) {
             console.log(error);
             res.sendStatus(500);
-        } else{
-            res.render('index', {
+        } else {
+            res.json({
                 newBurger: data
             });
+           
         }
     })
 })

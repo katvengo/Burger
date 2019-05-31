@@ -6,20 +6,17 @@ function selectAll(callback) {
         'SELECT * FROM burgers',
         callback // pass this into query so it gets called
     );
-  
+
 }
 
 function insertOne(newBurger, callback) {
-    connection.query("INSERT INTO burgers (id, burger_name, devoured) VALUES (?, ?, ?)",
+    connection.query("INSERT INTO burgers (burger_name) VALUES (?)",
         [
-            newBurger.id,
             newBurger.burger_name,
-            newBurger.devoured
-
         ],
         callback
     );
-  
+
 }
 
 function updateOne(newBurger, callback) {
@@ -31,7 +28,7 @@ function updateOne(newBurger, callback) {
         ],
         callback
     );
-  
+
 }
 
 
