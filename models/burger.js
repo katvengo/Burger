@@ -18,13 +18,22 @@ var burger = {
                 newburger.devoured
             ]
         });
+    },
+    updateOne: function (devouredBurger) {
+         console.log('$$$', devouredBurger)
+        orm.updateOne("burgers", function (req) {
+            var devouredBurger = req.body
+            [
+                devouredBurger.id,
+                devouredBurger.burger_name,
+                devouredBurger.devoured
+           
+            ]
 
-        //     // update: function (objColVals, condition, cb) {
-        //     //     orm.update("cats", objColVals, condition, function (res) {
-        //     //         cb(res);
-        //     //     });
-        //   }
+
+        });
     }
+
 };
 
 // // Export the database functions for the controller (catsController.js).

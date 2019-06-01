@@ -8,7 +8,7 @@
     <div class="smallerDivs">
       <span id="one"> {{this.id}}</span>
       <span id="two"> {{this.burger_name}}</span>
-      <span id="three"><button class="button devour is-light is-rounded ">Devour!</button></span>
+      <span id="three"><button id={{this.id}} data-name={{this.burger_name}} data-devoured={{this.devoured}} class="button devour is-light is-rounded">Devour!</button></span>
     </div>
 
     {{/each}}
@@ -29,10 +29,11 @@
     </form>
   </div>
   <div class="column">
+    {{#if devouredBurger}}
     <div class="smallerDivs">
-      <span id="one">1</span>
-      <span id="two">2</span>
-      <span id="three"><button class="button devour is-light is-rounded ">Devour!</button></span>
+      <span id="one">{{this.id}}</span>
+      <span id="two">{{this.name}}</span>
+      {{/if}}
     </div>
   </div>
 
@@ -44,19 +45,39 @@
         event.preventDefault();
         var newBurger = {
           "burger_name": $("#burgerName").val(),
-          "id": "",
-          "devoured": ""
         };
         $.ajax({
           url: "/",
           method: "POST",
           data: newBurger,
-          datatype: 'text'
         }).then(function (res) {
           console.log(newBurger)
-         
+          window.location.reload()
         })
       })
-
+      $(".devour").on("click", function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+        console.log("devoured")
+        var devouredBurger = {
+          id: event.target.id,
+          burger_name: $(this).data("name"),
+          devoured: 1
+        }
+        $.ajax({
+          url: "/api",
+          method: "PUT",
+          data: devouredBurger,
+        }).then(function (res) {
+          if(res.affectedRows === 1){
+            console.log("devoured true")
+          } else {
+            alert('something went wrong with the update request');
+          }
+        })
+      })
     })
+
+
+
   </script>

@@ -8,8 +8,8 @@ function selectAll(callback) {
     );
 
 }
-
 function insertOne(newBurger, callback) {
+    console.log('hhhh', newBurger)
     connection.query("INSERT INTO burgers (burger_name) VALUES (?)",
         [
             newBurger.burger_name,
@@ -19,13 +19,11 @@ function insertOne(newBurger, callback) {
 
 }
 
-function updateOne(newBurger, callback) {
+function updateOne(devouredBurger, callback) {
+    // console.log('###', id)
     connection.query(
-        'INSERT INTO burgers (devoured) VALUES (?)',
-        [
-            newBurger.devoured,
-
-        ],
+        'UPDATE burgers SET devoured = true WHERE id = ?',
+        [devouredBurger.id],
         callback
     );
 
