@@ -35,16 +35,14 @@ router.post("/", function (req, res) {
     })
 })
 
-router.put("/api", function (req, res) {
+router.put("/", function (req, res) {
     orm.updateOne(req.body, function (error, data) {
         if (error) {
             console.log(error);
             res.sendStatus(500);
         } else {
-            res.json(data);
+             res.json(data);
         }
     })
 })
-
-
 module.exports = router

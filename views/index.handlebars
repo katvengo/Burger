@@ -4,14 +4,14 @@
 
 
   <div class="column is-offset-1">
-    {{#each burger}}
+    {{#each burger}} {{#unless this.devoured}}
     <div class="smallerDivs">
       <span id="one"> {{this.id}}</span>
       <span id="two"> {{this.burger_name}}</span>
       <span id="three"><button id={{this.id}} data-name={{this.burger_name}} data-devoured={{this.devoured}} class="button devour is-light is-rounded">Devour!</button></span>
     </div>
 
-    {{/each}}
+    {{/unless}}{{/each}}
   </div>
 
   <div class="column is-offset-">
@@ -29,12 +29,13 @@
     </form>
   </div>
   <div class="column">
-    {{#if devouredBurger}}
+    {{#each burger}} {{#if this.devoured}}
     <div class="smallerDivs">
       <span id="one">{{this.id}}</span>
-      <span id="two">{{this.name}}</span>
-      {{/if}}
-    </div>
+      <span id="two">{{this.burger_name}}</span>
+      <span id="three"><button id={{this.id}} data-name={{this.burger_name}} data-devoured={{this.devoured}} class="button devour is-light is-rounded">Devour!</button></span>
+    </div>  
+    {{/if}}{{/each}}
   </div>
 
   <script type="text/javascript">
@@ -56,24 +57,19 @@
         })
       })
       $(".devour").on("click", function (event) {
-        // Make sure to preventDefault on a submit event.
         event.preventDefault();
-        console.log("devoured")
         var devouredBurger = {
           id: event.target.id,
           burger_name: $(this).data("name"),
           devoured: 1
         }
         $.ajax({
-          url: "/api",
+          url: "/",
           method: "PUT",
           data: devouredBurger,
         }).then(function (res) {
-          if(res.affectedRows === 1){
-            console.log("devoured true")
-          } else {
-            alert('something went wrong with the update request');
-          }
+         window.location.reload()
+        
         })
       })
     })
